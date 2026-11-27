@@ -1,0 +1,52 @@
+{% extends "base.html" %}
+{% block title %}Enter your PIN{% endblock %}
+{% block topbar_class %}center{% endblock %}
+{% block body %}
+<section class="card pin" id="card" data-locked="{{ locked_for }}">
+  {% include "_decor.html" %}
+  <div class="inner">
+    <div class="lockbar" id="lockbar" role="alert" hidden>
+      <svg class="i"><use href="#i-lock"/></svg>
+      <div><strong id="lock-title"></strong><span id="lock-text"></span></div>
+    </div>
+
+    <div class="badge">
+      <svg class="i fill r"><use href="#i-heart"/></svg>
+      <svg class="i m"><use href="#i-lock"/></svg>
+    </div>
+    <h1 class="title md">
+      <span class="r">Boochoo, enter your secret PIN</span>
+      <span class="m">Enter your PIN</span>
+    </h1>
+
+    <div class="dots" id="dots" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
+    <p class="hint" id="hint" role="status" aria-live="polite">
+      <span class="idle"><span class="r">Only you and me</span><span class="m">4 digits</span></span>
+      <span class="dyn" id="hint-dyn"></span>
+    </p>
+
+    <div class="keypad" id="keypad">
+      <button type="button" class="key" data-k="1">1</button>
+      <button type="button" class="key" data-k="2">2</button>
+      <button type="button" class="key" data-k="3">3</button>
+      <button type="button" class="key" data-k="4">4</button>
+      <button type="button" class="key" data-k="5">5</button>
+      <button type="button" class="key" data-k="6">6</button>
+      <button type="button" class="key" data-k="7">7</button>
+      <button type="button" class="key" data-k="8">8</button>
+      <button type="button" class="key" data-k="9">9</button>
+      <span class="key blank" aria-hidden="true"></span>
+      <button type="button" class="key" data-k="0">0</button>
+      <button type="button" class="key" data-k="del" aria-label="Delete last digit"><svg class="i"><use href="#i-backspace"/></svg></button>
+    </div>
+
+    <p class="fine">
+      <span class="r">Forgot it? Ask your boyfriend 💕</span>
+      <span class="m">Forgot your PIN? Ask the site owner.</span>
+    </p>
+  </div>
+</section>
+{% endblock %}
+{% block scripts %}
+<script src="{{ url_for('static', filename='js/login.js', v=asset_v) }}" defer></script>
+{% endblock %}

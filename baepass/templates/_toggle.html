@@ -1,0 +1,9 @@
+<div class="toggle" role="group" aria-label="Choose a look">
+  <span class="thumb" aria-hidden="true"></span>
+  <button type="button" data-theme-set="romantic" aria-pressed="{{ 'true' if theme == 'romantic' else 'false' }}">
+    <svg class="i fill"><use href="#i-heart"/></svg><span>Romantic</span>
+  </button>
+  <button type="button" data-theme-set="minimal" aria-pressed="{{ 'true' if theme == 'minimal' else 'false' }}">
+    <svg class="i"><use href="#i-leaf"/></svg><span>Minimal</span>
+  </button>
+</div>

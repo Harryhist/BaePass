@@ -1,0 +1,87 @@
+{% extends "base.html" %}
+{% block title %}Verify{% endblock %}
+{% block topbar_right %}
+<button type="button" class="logout" id="logout">
+  <span>Log out</span><svg class="i"><use href="#i-logout"/></svg>
+</button>
+{% endblock %}
+{% block body %}
+<section class="card" id="card" data-state="idle" data-last="{{ last_verified }}">
+  {% include "_decor.html" %}
+  <div class="inner">
+    <div class="status">
+      <span class="chip" id="chip"><i></i>
+        <span class="idle"><span class="r">Bae's on standby</span><span class="m">Ready</span></span>
+        <span class="dyn" id="chip-dyn"></span>
+      </span>
+    </div>
+
+    <h1 class="title lg greet">
+      <span class="r" id="greet">Hey Shona</span>
+      <span class="m">Welcome back</span>
+    </h1>
+    <p class="sub">
+      <span class="r">Press the button and I'll let you in.</span>
+      <span class="m">Confirm your chat login with one tap.</span>
+    </p>
+
+    <div class="cta-wrap">
+      <span class="sticker s1 r">⭐ Boyfriend approved</span>
+      <span class="sticker s2 r">Instant pass 💕</span>
+
+      <button type="button" class="cta" id="cta" aria-live="polite">
+        <span class="glyph" aria-hidden="true">
+          <span class="g-idle">
+            <svg class="i fill r"><use href="#i-heart"/></svg>
+            <svg class="i m"><use href="#i-shield"/></svg>
+          </span>
+          <span class="g-load"><span class="spin"></span></span>
+          <svg class="i g-ok"><path class="tick" pathLength="1" d="M20 6 9 17l-5-5"/></svg>
+        </span>
+        <span class="cta-text">
+          <span class="cta-label">
+            <span class="idle"><span class="r">Talk to me baby</span><span class="m">Verify my account</span></span>
+            <span class="dyn" id="cta-l"></span>
+          </span>
+          <span class="cta-sub">
+            <span class="idle"><span class="r">by pressing this button</span><span class="m">Tap to confirm your login</span></span>
+            <span class="dyn" id="cta-s"></span>
+          </span>
+        </span>
+        <span class="tail" aria-hidden="true">
+          <svg class="i t-lock"><use href="#i-lock"/></svg>
+          <svg class="i t-open"><use href="#i-unlock"/></svg>
+        </span>
+      </button>
+      <div class="burst" id="burst" aria-hidden="true"></div>
+    </div>
+
+    <div class="result" id="result">
+      <div class="clip">
+        <div class="res" id="res" role="status" aria-live="polite" data-kind="none">
+          <span class="res-ic"><svg class="i"><use id="res-use" href="#i-mail"/></svg></span>
+          <div>
+            <h2 id="res-t"></h2>
+            <p id="res-p"></p>
+          </div>
+          <div class="res-actions">
+            <button type="button" class="btn-soft" id="again" hidden>
+              <svg class="i"><use href="#i-refresh"/></svg><span id="again-t"></span>
+            </button>
+            {% if chat_url %}
+            <a class="btn-soft strong" id="chat-link" href="{{ chat_url }}" target="_blank" rel="noopener noreferrer" hidden>
+              <span id="chat-t"></span><svg class="i"><use href="#i-external"/></svg>
+            </a>
+            {% endif %}
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <p class="last" id="last"><svg class="i"><use href="#i-clock"/></svg><span id="last-t"></span></p>
+  </div>
+</section>
+{% endblock %}
+{% block scripts %}
+<script src="{{ url_for('static', filename='js/main.js', v=asset_v) }}" defer></script>
+{% endblock %}
